@@ -1,0 +1,12 @@
+iniconfig==2.0.0
+markdown-it-py==4.0.0
+mdurl==0.1.2
+packaging==24.0
+pluggy==1.4.0
+psycopg==3.1.18
+Pygments==2.19.2
+pytest==8.1.1
+pytest-ordering==0.6
+pytest-testdox==3.1.0
+rich==14.3.3
+typing_extensions==4.10.0
