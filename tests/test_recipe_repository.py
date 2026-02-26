@@ -24,3 +24,12 @@ def test_all_recs(rec_repo, recipes_list):
 def test_by_name(rec_repo, recipes_list):
     output = rec_repo.find_by_name("Curry")
     assert output == [recipes_list[2]]
+
+
+@mark.it("find_by_spiciness() returns Recipe objects matching passed spiciness")
+def test_by_spice(rec_repo, recipes_list):
+    output = rec_repo.find_by_spiciness(5)
+    assert output == [recipes_list[0]]
+
+
+

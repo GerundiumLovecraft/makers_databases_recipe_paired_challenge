@@ -12,6 +12,7 @@ def db_connection():
     conn.seed()
     return conn
 
+
 @fixture
 def ingredients_list():
     return [

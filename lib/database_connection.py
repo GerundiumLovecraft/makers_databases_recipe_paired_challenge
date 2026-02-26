@@ -29,7 +29,7 @@ class DatabaseConnection:
     # We use it to set up our database ready for our tests or application.
     def seed(self):
         self._check_connection()
-        if not os.path.exists():
+        if not os.path.exists(self.SEED_FILEPATH):
             raise Exception(f"File {self.SEED_FILEPATH} does not exist")
         with self.connection.cursor() as cursor:
             cursor.execute(open(self.SEED_FILEPATH, "r").read())

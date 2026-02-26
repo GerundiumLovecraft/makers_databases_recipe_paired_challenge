@@ -13,7 +13,8 @@ class RecipeRepository:
             "SELECT * FROM recipes"
         )
         return [Recipe(**row) for row in rows]
-    
+
+
     def find_by_name(self, name):
         formatted_name = f"%{name}%"
         rows = self._conn.execute(
@@ -25,3 +26,17 @@ class RecipeRepository:
             return [Recipe(**row) for row in rows]
         else:
             raise NoSuchRecipe(f"No recipes matching {name}")
+        
+    
+    def find_by_spiciness(self, spiciness: int):
+        rows = self._conn.execute(
+            "SELECT DISTINCT ON (r.id) r.id, r.name, recipe, cooking_time, rating "
+            "FROM recipes r "
+            "JOIN recipe_to_ingredients ri ON r.id = ri.recipe_id "
+            "JOIN ingredients i ON i.id = ri.ingredient_id "
+            "WHERE spiciness = %s",
+            [spiciness]
+        )
+        return [Recipe(**row) for row in rows]
+    
+    def add_recipe
