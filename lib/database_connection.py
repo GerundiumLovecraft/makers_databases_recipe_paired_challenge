@@ -8,7 +8,8 @@ import os
 # If the below seems too complex right now, that's OK.
 # That's why we have provided it!
 class DatabaseConnection:
-    DATABASE_NAME = "recipe_database" # <-- CHANGE THIS!
+    DATABASE_NAME = "recipe_database" 
+    SEED_FILEPATH = "seeds/recipe_database.sql"
 
     def __init__(self):
         self.connection = None
@@ -28,10 +29,10 @@ class DatabaseConnection:
     # We use it to set up our database ready for our tests or application.
     def seed(self):
         self._check_connection()
-        if not os.path.exists("seeds/recipe_database.sql"):
-            raise Exception(f"File {"seeds/recipe_database.sql"} does not exist")
+        if not os.path.exists():
+            raise Exception(f"File {self.SEED_FILEPATH} does not exist")
         with self.connection.cursor() as cursor:
-            cursor.execute(open("seeds/recipe_database.sql", "r").read())
+            cursor.execute(open(self.SEED_FILEPATH, "r").read())
             self.connection.commit()
 
     # This method executes an SQL query on the database.
